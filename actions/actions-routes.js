@@ -8,8 +8,8 @@ const router = express.Router(); // notice the Uppercase "R" in Router
 
 // custom middleware
 const project_idDescriptionNotesCheck = (req, res, next) => {
-    if (!req.body.project_id || !req.body.description || !req.body.notes) {
-        res.status(400).json({ errorMessage: "Please provide a name, description, and whether completed for the project." });
+    if (!req.body.project_id || !req.body.description || req.body.description.length > 128 || !req.body.notes) {
+        res.status(400).json({ errorMessage: "Please provide a name, description (under 128 characters), and whether completed for the project." });
       } else {
         next();
       }
