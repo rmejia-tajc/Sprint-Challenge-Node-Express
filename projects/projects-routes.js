@@ -5,9 +5,10 @@ const ProjectsDb = require('./projectModel.js');
 
 const router = express.Router(); // notice the Uppercase "R" in Router
 
+
 // custom middleware
-const nameDescriptionCompletedCheck = (req, res, next) => {
-    if (!req.body.name || !req.body.description || !req.body.completed) {
+const nameDescriptionCheck = (req, res, next) => {
+    if (!req.body.name || !req.body.description) {
         res.status(400).json({ errorMessage: "Please provide a name, description, and whether completed for the project." });
       } else {
         next();
@@ -64,7 +65,7 @@ router.get('/:id/actions', async (req, res) => {
 });
 
 // POST
-router.post('/', nameDescriptionCompletedCheck, async (req, res) => {
+router.post('/', nameDescriptionCheck, async (req, res) => {
     
     try {
         const project = await ProjectsDb.insert(req.body);
@@ -78,7 +79,7 @@ router.post('/', nameDescriptionCompletedCheck, async (req, res) => {
 });
 
 // PUT
-router.put('/:id', nameDescriptionCompletedCheck, async (req, res) => {
+router.put('/:id', nameDescriptionCheck, async (req, res) => {
      
     try {
         const project = await ProjectsDb.update(req.params.id, req.body);
@@ -109,7 +110,7 @@ router.delete('/:id', async (req, res) => {
     } catch (error) {
         // log error to database
         console.log(error);
-        res.status(500).json({ error: "The project could not be removed. Please check that the project's post(s) have been removed first." });
+        res.status(500).json({ error: "The project could not be removed. Please check that the project's action(s) have been removed first." });
     }
 });
 

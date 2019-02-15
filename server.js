@@ -6,6 +6,7 @@ const helmet = require('helmet');
 
 
 const projectsRouter = require('./projects/projects-routes.js');
+const actionsRouter = require('./actions/actions-routes.js');
 
 
 // creates the server / creates an express application using the express module
@@ -19,6 +20,9 @@ server.use(express.json());
 
 // this only runs if the url has /api/projects in it
 server.use('/api/projects', projectsRouter);
+
+// this only runs if the url has /api/actions in it
+server.use('/api/actions', actionsRouter);
 
 
 // initial server test
