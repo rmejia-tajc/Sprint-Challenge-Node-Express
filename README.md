@@ -26,13 +26,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+- Express adds functionality to Node.js , like middleware and routing.
+
 - [ ] Describe Middleware?
+
+- Middleware adds functionality to requests and responses.
 
 - [ ] Describe a Resource?
 
+- Resource is the data that can be accessed by using the API.
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+- HTTP response codes.
+
 - [ ] How can we partition our application into sub-applications?
+
+- By routing different functionality to different routes.
 
 ## Project Setup
 
