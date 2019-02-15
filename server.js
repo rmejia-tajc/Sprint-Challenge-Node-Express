@@ -5,14 +5,20 @@ const express = require('express');
 const helmet = require('helmet');
 
 
+const projectsRouter = require('./projects/projects-routes.js');
 
 
 // creates the server / creates an express application using the express module
 const server = express();
 
+
 // global middleware
 server.use(helmet());
 server.use(express.json());
+
+
+// this only runs if the url has /api/projects in it
+server.use('/api/projects', projectsRouter);
 
 
 // initial server test
